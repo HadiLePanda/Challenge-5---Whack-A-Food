@@ -24,7 +24,8 @@ public class GameManagerX : MonoBehaviour
     [SerializeField] private float gameDuration = 30f;
     [SerializeField] private float musicMenuVolume = 0.1f;
     [SerializeField] private float musicGameplayVolume = 0.3f;
-    [SerializeField] private float percentageIncrementPerLevel = 0.2f;
+    [SerializeField] private float scorePercentageIncrement = 0.2f;
+    [SerializeField] private float spawnRatePercentageIncrement = 0.25f;
     [SerializeField] private float ultraWinTimeMultiplier = 0.2f;
 
     [Header("Sounds")]
@@ -120,9 +121,10 @@ public class GameManagerX : MonoBehaviour
         _score = 0;
 
         // adjust values based on difficulty chosen
-        float difficultyMultiplier = GetDifficultyMultiplier();
-        spawnRate /= Mathf.Max(1, difficultyMultiplier);
-        TargetWinScore = (int)Mathf.Round(baseWinScore * difficultyMultiplier);
+        float spawnRateMultiplier = GetSpawnrateDifficultyMultiplier();
+        float scoreMultiplier = GetScoreDifficultyMultiplier();
+        spawnRate /= Mathf.Max(1, spawnRateMultiplier);
+        TargetWinScore = (int)Mathf.Round(baseWinScore * scoreMultiplier);
 
         // play game start sound
         AudioManager.singleton.PlaySound2DOneShot(startSound);
@@ -238,9 +240,13 @@ public class GameManagerX : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public float GetDifficultyMultiplier()
+    public float GetScoreDifficultyMultiplier()
     {
-        return GetMultiplierByLevel(Difficulty, 1f, percentageIncrementPerLevel);
+        return GetMultiplierByLevel(Difficulty, 1f, scorePercentageIncrement);
+    }
+    public float GetSpawnrateDifficultyMultiplier()
+    {
+        return GetMultiplierByLevel(Difficulty, 1f, spawnRatePercentageIncrement);
     }
     public float GetMultiplierByLevel(int level, float baseMultiplier, float percentageIncreasePerLevel)
     {

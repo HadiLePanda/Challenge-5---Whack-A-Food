@@ -1768,7 +1768,8 @@ MonoBehaviour:
   gameDuration: 30
   musicMenuVolume: 0.1
   musicGameplayVolume: 0.3
-  percentageIncrementPerLevel: 0.2
+  scorePercentageIncrement: 0.2
+  spawnRatePercentageIncrement: 0.3
   ultraWinTimeMultiplier: 0.3
   startSound: {fileID: 8300000, guid: b2bf9832e805d9d44abfeebc3a9a4790, type: 3}
   gameOverSound: {fileID: 8300000, guid: 141c8c25d9cef854a9e12f135c8c1f9c, type: 3}

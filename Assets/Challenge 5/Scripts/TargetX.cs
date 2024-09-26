@@ -26,7 +26,7 @@ public class TargetX : MonoBehaviour
     // after a delay, moves the target behind background so it collides with the Sensor object
     private IEnumerator RemoveObjectRoutine()
     {
-        yield return new WaitForSeconds(GameManagerX.singleton.RespawnRate / GameManagerX.singleton.GetDifficultyMultiplier());
+        yield return new WaitForSeconds(GameManagerX.singleton.RespawnRate / GameManagerX.singleton.GetSpawnrateDifficultyMultiplier());
         if (GameManagerX.singleton.IsGameActive)
         {
             transform.Translate(Vector3.forward * 5, Space.World);
